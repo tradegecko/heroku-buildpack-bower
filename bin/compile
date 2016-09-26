@@ -5,6 +5,18 @@ CACHE_DIR=$2
 
 cd $BUILD_DIR
 
+get_os() {
+  uname | tr A-Z a-z
+}
+
+get_cpu() {
+  if [[ "$(uname -p)" = "i686" ]]; then
+    echo "x86"
+  else
+    echo "x64"
+  fi
+}
+
 needs_resolution() {
   local semver=$1
   if ! [[ "$semver" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -17,6 +29,8 @@ needs_resolution() {
 install_nodejs() {
   local version="4.5.0"
   local dir="$BUILD_DIR/.heroku/node"
+  local os=get_os
+  local cpu=get_cpu
 
   if needs_resolution "$version"; then
     echo "Resolving node version ${version:-(latest stable)} via semver.io..."
@@ -24,6 +38,7 @@ install_nodejs() {
   fi
 
   echo "Downloading and installing node $version..."
+  echo "https://s3pository.heroku.com/node/v$version/node-v$version-$os-$cpu.tar.gz"
   local download_url="https://s3pository.heroku.com/node/v$version/node-v$version-$os-$cpu.tar.gz"
   local code=$(curl "$download_url" --silent --fail --retry 5 --retry-max-time 15 -o /tmp/node.tar.gz --write-out "%{http_code}")
   if [ "$code" != "200" ]; then
