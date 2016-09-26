@@ -74,6 +74,6 @@ install_npm() {
 
 install_nodejs
 install_npm
+npm install bower
 ls
-npm install bower -g
-bower --version
+ls node_modules
