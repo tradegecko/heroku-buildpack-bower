@@ -3,6 +3,7 @@
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+mkdir -p "$BUILD_DIR/.heroku/node/"
 cd $BUILD_DIR
 
 get_os() {
