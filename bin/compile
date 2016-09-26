@@ -6,6 +6,8 @@ CACHE_DIR=$2
 mkdir -p "$BUILD_DIR/.heroku/node/"
 cd $BUILD_DIR
 
+export PATH="$BUILD_DIR/.heroku/node/bin:$PATH:$BUILD_DIR/bin:$BUILD_DIR/node_modules/.bin"
+
 get_os() {
   uname | tr A-Z a-z
 }
