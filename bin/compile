@@ -29,8 +29,8 @@ needs_resolution() {
 install_nodejs() {
   local version="4.5.0"
   local dir="$BUILD_DIR/.heroku/node"
-  local os=get_os
-  local cpu=get_cpu
+  local os=$(get_os)
+  local cpu=$(get_cpu)
 
   if needs_resolution "$version"; then
     echo "Resolving node version ${version:-(latest stable)} via semver.io..."
