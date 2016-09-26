@@ -75,3 +75,8 @@ install_npm() {
 install_nodejs
 install_npm
 npm install bower -g
+
+echo "do we have bower"
+bower --version
+/tmp/build_f2c051d2d8ac7d021cb6431cb032891c/.heroku/node/bin/bower --version
+echo "???"
