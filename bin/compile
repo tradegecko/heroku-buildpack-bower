@@ -15,7 +15,7 @@ needs_resolution() {
 }
 
 install_nodejs() {
-  local version="4.1.1"
+  local version="4.5.0"
   local dir="$BUILD_DIR/.heroku/node"
 
   if needs_resolution "$version"; then
@@ -54,6 +54,6 @@ install_npm() {
   fi
 }
 
-install_npm
 install_nodejs
+install_npm
 npm install
